@@ -5,8 +5,19 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <footer-nav></footer-nav>
   </div>
 </template>
+<script>
+import FooterNav from '@/components/footer'
+
+export default {
+  components: {
+    FooterNav,
+  },
+}
+</script>
+
 <style lang="stylus">
 #app
   font-family 'Avenir', Helvetica, Arial, sans-serif
@@ -20,6 +31,7 @@
   a
     font-weight bold
     color #2c3e50
+    text-decoration-line none
     &.router-link-exact-active
-      color #42b983
+      color blue
 </style>

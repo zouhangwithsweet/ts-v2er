@@ -1,5 +1,20 @@
-<template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
-</template>
+<script lang="tsx">
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component
+export default class About extends Vue {
+  render() {
+    return (
+      <div class="about">
+        66666
+      </div>
+    )
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+  .about
+    height 30px
+    font-size 30px
+</style>
