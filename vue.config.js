@@ -1,3 +1,7 @@
+const path = require('path')
+
+const resolve = file => path.resolve(__dirname, file)
+
 module.exports = {
   css: {
     loaderOptions: {
@@ -15,4 +19,7 @@ module.exports = {
     config.module.rule('ts').use('cache-loader')
     config.plugin('fork-ts-checker')
   },
+  transpileDependencies: [
+    /\bvue-awesome\b/,
+  ],
 }

@@ -10,7 +10,7 @@ export default class FooterNav extends Vue {
       path: '/hot',
     },
     {
-      icon: 'clock-o',
+      icon: 'clock',
       name: '最新',
       path: '/now',
     },
@@ -24,7 +24,10 @@ export default class FooterNav extends Vue {
   render() {
     return (
       <div class="footer">
-        {this.icons.map(item => <router-link class='footer-item' to={item.path}>{item.name}</router-link>)}
+        {this.icons.map(item => <router-link class='footer-item' to={item.path}>
+          <icon name={item.icon} scale="1.2"></icon>
+          {item.name}
+        </router-link>)}
       </div>
     )
   }
@@ -37,6 +40,7 @@ export default class FooterNav extends Vue {
   justify-content space-between
   align-items center
   position fixed
+  padding 6px 0
   height 96px
   bottom 0
   left 0
@@ -54,5 +58,5 @@ export default class FooterNav extends Vue {
     color #333
     text-decoration-line none
     &.router-link-active
-      color red
+      color $main-color
 </style>
