@@ -55,8 +55,17 @@ export default class FooterNav extends Vue {
     align-items center
     flex-direction column
     font-size 20px
-    color #333
+    color #101010
     text-decoration-line none
     &.router-link-active
       color $main-color
+      animation scale .4s ease-in-out
+
+@keyframes scale
+  0%
+    transform scale(1.05)
+  50%
+    transform scale(1.1)
+  100%
+    transform scale(1)
 </style>

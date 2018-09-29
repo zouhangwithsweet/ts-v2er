@@ -20,6 +20,8 @@
       ]
     },
     "lib": [
+      "es5",
+      "es6",
       "esnext",
       "dom",
       "dom.iterable",
@@ -27,6 +29,11 @@
     ]
   },
   "include": [
+    "node_modules/vue-tsx-support/enable-check.d.ts",
+    "node_modules/vue-tsx-support/options/enable-html-attrs.d.ts",
+    "node_modules/vue-tsx-support/options/enable-nativeon.d.ts",
+    "node_modules/vue-tsx-support/options/enable-vue-router.d.ts",
+    "src/**/*",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
