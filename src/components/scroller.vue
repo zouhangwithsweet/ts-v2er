@@ -1,6 +1,7 @@
 <script lang="tsx">
 import { Prop, Component, Watch } from 'vue-property-decorator'
-import Vue, { VNode } from 'vue'
+import { Component as VueComponent } from 'vue-tsx-support'
+import { VNode } from 'vue'
 import BScroll, { Position } from 'better-scroll'
 
 interface IEvents {
@@ -27,7 +28,7 @@ interface IProps {
 }
 
 @Component
-export default class Scroller extends Vue {
+export default class Scroller extends VueComponent<IProps, IEvents> {
   scroll!: BScroll
   pos: Position = { x: 0, y: 0 }
   $refs!: { wrapper: HTMLDivElement }

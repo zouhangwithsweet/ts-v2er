@@ -1,10 +1,11 @@
 <script lang="tsx">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Component as VueComponent } from 'vue-tsx-support'
+import { Component, Prop } from 'vue-property-decorator'
 import Scroller from './Scroller.vue'
-import Toptip from './Release.vue'
+import TopTip from './Release.vue'
 
 @Component
-export default class List extends Vue {
+export default class List extends VueComponent<{}> {
   $refs!: { scroller: Scroller }
   @Prop({ type: Array, default: () => [] }) data!: any[]
 
@@ -34,7 +35,7 @@ export default class List extends Vue {
           onPullingDown={this.pullDown}
         >
           <div class="scroller-inner">
-            <Toptip loading={this.loading}/>
+            <TopTip loading={this.loading}/>
             66666
           </div>
         </Scroller>
