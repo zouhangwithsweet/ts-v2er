@@ -11,6 +11,7 @@
     "@types/better-scroll": "^1.12.0",
     "axios": "^0.18.0",
     "better-scroll": "^1.13.0",
+    "dayjs": "^1.7.7",
     "modern-normalize": "^0.5.0",
     "vue": "^2.5.17",
     "vue-awesome": "^3.1.3",

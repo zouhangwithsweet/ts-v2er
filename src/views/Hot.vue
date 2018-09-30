@@ -4,10 +4,16 @@ import List from '@/components/List.vue'
 
 @Component
 export default class Hot extends Vue {
+  data = [
+    {
+      name: 555,
+    },
+  ]
+
   render() {
     return (
       <div class="hot">
-        <List/>
+        <List list={this.data}/>
       </div>
     )
   }

@@ -7,7 +7,7 @@ import TopTip from './Release.vue'
 @Component
 export default class List extends VueComponent<{}> {
   $refs!: { scroller: Scroller }
-  @Prop({ type: Array, default: () => [] }) data!: any[]
+  @Prop({ type: Array, default: null }) list!: any[]
 
   private loading: boolean = false
 
@@ -36,7 +36,7 @@ export default class List extends VueComponent<{}> {
         >
           <div class="scroller-inner">
             <TopTip loading={this.loading}/>
-            66666
+            {this.list.map(item => <span>{item.name}</span>)}
           </div>
         </Scroller>
       </div>
