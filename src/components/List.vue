@@ -4,10 +4,17 @@ import { Component, Prop } from 'vue-property-decorator'
 import Scroller from './Scroller.vue'
 import TopTip from './Release.vue'
 
+interface Iprop {
+  tip?: string
+  dataList?: any[]
+}
+
 @Component
-export default class List extends VueComponent<{}> {
+export default class List extends VueComponent<Iprop> {
   $refs!: { scroller: Scroller }
-  @Prop({ type: Array, default: null }) list!: any[]
+  @Prop({ type: Array, default: null }) dataList!: any[]
+
+  @Prop({ type: String, default: null }) tip!: string
 
   private loading: boolean = false
 
@@ -36,7 +43,7 @@ export default class List extends VueComponent<{}> {
         >
           <div class="scroller-inner">
             <TopTip loading={this.loading}/>
-            {this.list.map(item => <span>{item.name}</span>)}
+            {this.dataList.map(item => <span>{item.name}<br/></span>)}
           </div>
         </Scroller>
       </div>

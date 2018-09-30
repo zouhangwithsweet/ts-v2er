@@ -6,14 +6,22 @@ import List from '@/components/List.vue'
 export default class Hot extends Vue {
   data = [
     {
-      name: 555,
+      name: 55588,
+    },
+    {
+      name: 55588,
+    },
+    {
+      name: 55588,
     },
   ]
+
+  tip = '1'
 
   render() {
     return (
       <div class="hot">
-        <List list={this.data}/>
+        <List tip={this.tip} data-list={this.data}/>
       </div>
     )
   }
