@@ -1,17 +1,8 @@
 <script lang="tsx">
-import { Prop, Component, Watch } from 'vue-property-decorator'
 import { Component as VueComponent } from 'vue-tsx-support'
-import { VNode } from 'vue'
+import { Component, Prop, Watch } from 'vue-property-decorator'
 import BScroll, { Position } from 'better-scroll'
-
-interface IEvents {
-  onPullingDown: () => void
-  onPullingUp: () => void
-  onTouchEnd: () => void
-  onScroll: (pos: Position) => void
-  onScrollToEnd: () => void
-  onBeforeScroll: () => void
-}
+import { VNode } from 'vue'
 
 interface IProps {
   probeType?: number
@@ -27,8 +18,19 @@ interface IProps {
   withPosition?: (pos: Position) => VNode
 }
 
-@Component
-export default class Scroller extends VueComponent<IProps, IEvents> {
+interface IEvents {
+  onPullingDown: () => void
+  onPullingUp: () => void
+  onTouchEnd: () => void
+  onScroll: (pos: Position) => void
+  onScrollToEnd: () => void
+  onBeforeScroll: () => void
+}
+
+@Component({
+  name: 'scroller',
+})
+export default class Scroll extends VueComponent<IProps, IEvents> {
   scroll!: BScroll
   pos: Position = { x: 0, y: 0 }
   $refs!: { wrapper: HTMLDivElement }
@@ -105,7 +107,7 @@ export default class Scroller extends VueComponent<IProps, IEvents> {
     }
     // touchEnd
     if (this.touchEnd) {
-      this.scroll.on('touchEnd', (pos: Position) => {
+      this.scroll.on('touchEnd', pos => {
         this.$emit('touchEnd')
         // if (pos.y > 50) {
         //   this.$emit('touchEnd')
@@ -114,7 +116,7 @@ export default class Scroller extends VueComponent<IProps, IEvents> {
     }
     if (this.listenScroll) {
       let me = this
-      this.scroll.on('scroll', (pos: Position) => {
+      this.scroll.on('scroll', pos => {
         this.pos = Object.assign({}, this.pos, pos)
         me.$emit('scroll', pos)
       })
@@ -148,17 +150,28 @@ export default class Scroller extends VueComponent<IProps, IEvents> {
   scrollToElement() {
     this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
   }
+
   render() {
     return (
-      <div class="scroll-wrapper" ref="wrapper">
-        {this.$slots.default}
+      <div class="scroll">
+        {this.withPosition ? this.withPosition(this.pos) : null}
+        <div class="scroll-wrapper" ref="wrapper">
+          {this.$slots.default}
+        </div>
       </div>
     )
   }
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
+.scroll
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0
+
   .scroll-wrapper
     position fixed
     top 0
