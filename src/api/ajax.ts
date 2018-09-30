@@ -3,9 +3,8 @@ const qs = require('qs').default
 
 const service = axios.create({
   baseURL: process.env.MOCK_URL,
-  timeout: 180000
+  timeout: 180000,
 })
-
 
 /**
  * 通用request封装
@@ -19,7 +18,7 @@ const request = (method: string, url: string, data: any, config = {}) => {
   const options: any = Object.assign({}, config, {
       url,
       method,
-      data
+      data,
   })
   options.headers = options.headers || {}
   return new Promise((resolve, reject) => {
@@ -53,14 +52,14 @@ export const ajax = {
   post(url: string, data: any, config: any) {
       if (!config.headers) {
           config.headers = {
-              'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+              'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
           }
       }
       return request('post', url, qs.stringify(data), config)
   },
   put(url: string, data: any, config: any) {
       config.headers = {
-          'Content-Type': 'application/json; charset=UTF-8'
+          'Content-Type': 'application/json; charset=UTF-8',
       }
       return request('put', url, data, config)
   },
@@ -69,5 +68,5 @@ export const ajax = {
   },
   setCommonHeader(key: any, value: any) {
       service.defaults.headers.common[key] = value
-  }
+  },
 }

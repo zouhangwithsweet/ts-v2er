@@ -1,15 +1,11 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view/>
     <footer-nav></footer-nav>
   </div>
 </template>
 <script>
-import FooterNav from '@/components/footer'
+import FooterNav from '@/components/Footer'
 
 export default {
   components: {
