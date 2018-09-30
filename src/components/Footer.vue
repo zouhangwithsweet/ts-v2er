@@ -25,7 +25,7 @@ export default class FooterNav extends Vue {
     return (
       <div class="footer">
         {this.icons.map(item => <router-link class='footer-item' to={item.path}>
-          <icon name={item.icon} scale="1.2"></icon>
+          <icon class='icon' name={item.icon} scale="1.2"></icon>
           {item.name}
         </router-link>)}
       </div>
@@ -59,7 +59,8 @@ export default class FooterNav extends Vue {
     text-decoration-line none
     &.router-link-active
       color $main-color
-      animation scale .4s ease-in-out
+      .icon
+        animation scale .25s ease-in-out
 
 @keyframes scale
   0%
