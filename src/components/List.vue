@@ -21,6 +21,7 @@ export default class List extends VueComponent<Iprop> {
   pullUp() {
     setTimeout(() => {
       console.log('ok')
+      this.$refs.scroller.scroll.finishPullUp()
     }, 2000)
   }
 
@@ -54,7 +55,6 @@ export default class List extends VueComponent<Iprop> {
 
 <style lang="stylus">
 .scroller-inner
-  height 200vh
   position relative
   .top-tip
     position absolute

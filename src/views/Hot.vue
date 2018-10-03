@@ -4,7 +4,7 @@ import List from '@/components/List.vue'
 
 @Component
 export default class Hot extends Vue {
-  data = [
+  data: any = [
     {
       name: 55588,
     },
@@ -15,6 +15,23 @@ export default class Hot extends Vue {
       name: 55588,
     },
   ]
+
+  created() {
+    console.log('created')
+    for (let i = 0; i < 100; i++) {
+      this.data.push({
+        name: i,
+      })
+    }
+  }
+
+  mounted() {
+    console.log('mounted')
+  }
+
+  beforeDestroy() {
+    console.log('i will destroy')
+  }
 
   tip = '1'
 
