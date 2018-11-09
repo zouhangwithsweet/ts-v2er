@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
 import test from './views/test'
 import Hot from './views/Hot.vue'
 

@@ -2,7 +2,7 @@ import axios from 'axios'
 const qs = require('qs').default
 
 const service = axios.create({
-  baseURL: process.env.MOCK_URL,
+  baseURL: '/api',
   timeout: 180000,
 })
 

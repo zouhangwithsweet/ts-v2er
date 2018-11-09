@@ -55,6 +55,8 @@ export default class Scroll extends VueComponent<IProps, IEvents> {
   touchEnd!: boolean
   @Prop({ default: 20, type: Number })
   refreshDelay!: number
+  @Prop({ default: 96, type: Number })
+  paddingBottom!: number
 
   @Watch('data')
   dataOnChange() {
@@ -155,7 +157,9 @@ export default class Scroll extends VueComponent<IProps, IEvents> {
     return (
       <div class="scroll">
         {this.withPosition ? this.withPosition(this.pos) : null}
-        <div class="scroll-wrapper" ref="wrapper">
+        <div class="scroll-wrapper"
+          ref="wrapper"
+          style={{ bottom: this.paddingBottom/100 + 'rem' }}>
           {this.$slots.default}
         </div>
       </div>
@@ -166,12 +170,6 @@ export default class Scroll extends VueComponent<IProps, IEvents> {
 
 <style lang="stylus" scoped>
 .scroll
-  position fixed
-  top 0
-  bottom 0
-  left 0
-  right 0
-
   .scroll-wrapper
     position fixed
     top 0

@@ -12,7 +12,7 @@ interface Iprop {
 @Component
 export default class List extends VueComponent<Iprop> {
   $refs!: { scroller: Scroller }
-  @Prop({ type: Array, default: null }) dataList!: any[]
+  @Prop({ type: Array, default: [] }) dataList!: any[]
 
   @Prop({ type: String, default: null }) tip!: string
 
@@ -44,7 +44,7 @@ export default class List extends VueComponent<Iprop> {
         >
           <div class="scroller-inner">
             <TopTip loading={this.loading}/>
-            {this.dataList.map(item => <span>{item.name}<br/></span>)}
+            {this.dataList.map(item => <span>{item.title}<br/></span>)}
           </div>
         </Scroller>
       </div>

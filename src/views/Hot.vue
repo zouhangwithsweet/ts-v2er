@@ -1,44 +1,22 @@
 <script lang="tsx">
 import { Vue, Component } from 'vue-property-decorator'
 import List from '@/components/List.vue'
+import { getHotList } from '@/api'
 
 @Component
 export default class Hot extends Vue {
-  data: any = [
-    {
-      name: 55588,
-    },
-    {
-      name: 55588,
-    },
-    {
-      name: 55588,
-    },
-  ]
+  data: any = []
 
-  created() {
-    console.log('created')
-    for (let i = 0; i < 100; i++) {
-      this.data.push({
-        name: i,
-      })
-    }
+  async mounted() {
+    let resp = await getHotList()
+    console.log(resp)
+    this.data = resp
   }
-
-  mounted() {
-    console.log('mounted')
-  }
-
-  beforeDestroy() {
-    console.log('i will destroy')
-  }
-
-  tip = '1'
 
   render() {
     return (
       <div class="hot">
-        <List tip={this.tip} data-list={this.data}/>
+        <List data-list={this.data}/>
       </div>
     )
   }
