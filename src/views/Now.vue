@@ -1,3 +1,4 @@
+<script lang="tsx">
 import { Vue, Component } from 'vue-property-decorator'
 import List from '@/components/List.vue'
 import ListItem from '@/components/ListItem.vue'
@@ -19,7 +20,7 @@ export default class Hot extends Vue {
   async fetchData() {
     let resp = await getNowList()
     this.data = resp
-    (this.$refs.list as any).finishPullDown()
+    this.$refs.list.finishPullDown()
   }
 
   render() {
@@ -37,3 +38,9 @@ export default class Hot extends Vue {
     )
   }
 }
+</script>
+
+<style lang="stylus" scoped>
+  .list-item
+    font-size $font-size-medium
+</style>

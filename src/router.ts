@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hot from './views/Hot.vue'
-import Now from './views/Now'
+import Now from './views/Now.vue'
 
 Vue.use(Router)
 
