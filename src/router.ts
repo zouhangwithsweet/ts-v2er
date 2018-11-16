@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import test from './views/test'
 import Hot from './views/Hot.vue'
+import Now from './views/Now'
 
 Vue.use(Router)
 
@@ -19,17 +19,9 @@ export default new Router({
       name: 'Hot',
     },
     {
-      path: '/test',
-      component: test,
-      name: 'Test',
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      path: '/now',
+      component: Now,
+      name: 'Now',
     },
   ],
 })
