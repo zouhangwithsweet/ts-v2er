@@ -1,6 +1,7 @@
 <script lang="tsx">
 import { Component as VueComponent } from 'vue-tsx-support'
 import { Component, Prop } from 'vue-property-decorator'
+import { VNode } from 'vue'
 import Scroller from './Scroller.vue'
 import TopTip from './Release.vue'
 
@@ -12,26 +13,32 @@ interface Iprop {
 @Component
 export default class List extends VueComponent<Iprop> {
   $refs!: { scroller: Scroller }
-  @Prop({ type: Array, default: [] }) dataList!: any[]
+  @Prop({ type: Array, default: () => [] }) dataList!: any[]
 
   @Prop({ type: String, default: null }) tip!: string
 
+  @Prop() withData?: () => VNode
+
   private loading: boolean = false
 
+  // pullup and finishpullup
   pullUp() {
-    setTimeout(() => {
-      console.log('ok')
-      this.$refs.scroller.scroll.finishPullUp()
-    }, 2000)
+    this.$emit('pullUp')
   }
 
+  finishPullUp() {
+    this.$refs.scroller.scroll.finishPullUp()
+  }
+
+  // pulldown and finishpulldown
   async pullDown() {
     this.loading = true
-    setTimeout(() => {
-      console.log('ok')
-      this.loading = false
-      this.$refs.scroller.scroll.finishPullDown()
-    }, 2000)
+    this.$emit('pullDown')
+  }
+
+  finishPullDown() {
+    this.$refs.scroller.scroll.finishPullDown()
+    this.loading = false
   }
 
   render() {
@@ -44,7 +51,7 @@ export default class List extends VueComponent<Iprop> {
         >
           <div class="scroller-inner">
             <TopTip loading={this.loading}/>
-            {this.dataList.map(item => <span>{item.title}<br/></span>)}
+            {this.withData && this.withData()}
           </div>
         </Scroller>
       </div>
