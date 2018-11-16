@@ -30,6 +30,6 @@ app.use(history())
 app.use('/', apiRoutes)
 app.use(express.static(path.join(__dirname, 'dist')))
 
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 app.listen(port)
 console.log('server started ' + port)
