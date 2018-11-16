@@ -55,7 +55,7 @@ export default class Scroll extends VueComponent<IProps, IEvents> {
   touchEnd!: boolean
   @Prop({ default: 20, type: Number })
   refreshDelay!: number
-  @Prop({ default: 96, type: Number })
+  @Prop({ default: 104, type: Number })
   paddingBottom!: number
 
   @Watch('data')
@@ -171,9 +171,10 @@ export default class Scroll extends VueComponent<IProps, IEvents> {
 <style lang="stylus" scoped>
 .scroll
   .scroll-wrapper
-    position fixed
+    position absolute
     top 0
     bottom 0
     left 0
     right 0
+    padding 0 8px
 </style>
