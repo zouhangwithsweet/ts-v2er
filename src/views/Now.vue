@@ -13,7 +13,9 @@ export default class Hot extends Vue {
   data: Array<IData> = []
   $refs!: {list: List}
   async mounted() {
+    this.$loading()
     let resp = await getNowList()
+    this.$loading.hide()
     this.data = resp
   }
 

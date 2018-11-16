@@ -83,8 +83,12 @@ export default class ListItem extends VueComponent<IPorps> {
           color #b1b1b1
     .v-list__node
       position absolute
-      top 20px
+      top 0
       right 0
+      display flex
+      flex-direction column
+      padding-top .2rem
+      text-align center
       .v-list__node--title
         display inline-block
         padding 8px

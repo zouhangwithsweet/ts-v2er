@@ -11,6 +11,8 @@ import 'vue-awesome/icons'
 const Icon = require('vue-awesome/components/Icon').default
 Vue.component('icon', Icon)
 
+import Loading from '@/components/loading'
+Vue.use(Loading)
 Vue.use(VueI18n)
 Vue.config.productionTip = false
 

@@ -13,8 +13,10 @@ export default class Hot extends Vue {
   data: Array<IData> = []
   $refs!: {list: List}
   async mounted() {
+    this.$loading()
     let resp = await getHotList()
     this.data = resp
+    this.$loading.hide()
   }
 
   async fetchData() {
