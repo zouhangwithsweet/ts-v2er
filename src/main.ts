@@ -8,10 +8,10 @@ import 'modern-normalize/modern-normalize.css'
 
 // 引入Icon图库
 import 'vue-awesome/icons'
-const Icon = require('vue-awesome/components/Icon').default
-Vue.component('icon', Icon)
 
 import Loading from '@/components/loading'
+const Icon = require('vue-awesome/components/Icon').default
+Vue.component('icon', Icon)
 Vue.use(Loading)
 Vue.use(VueI18n)
 Vue.config.productionTip = false

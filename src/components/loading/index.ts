@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import LoadingComp from './Loading.vue'
 
-
 const LoadingConstructor = Vue.extend(LoadingComp)
 let seed = 1
 const createInstance = (() => {
   let instance:any = null
   return (options:any) => {
     return instance || (instance = new LoadingConstructor({
-      data: options
+      data: options,
     }))
   }
 })()
@@ -35,7 +34,7 @@ function Loading(options: any) {
 
 (Loading as any)._instance = null
 
-Loading.hide = () => {
+;(Loading as any).hide = () => {
   let instance = (Loading as any)._instance
   if (instance && instance.show) {
     instance.close()
