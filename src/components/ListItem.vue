@@ -99,6 +99,7 @@ export default class ListItem extends VueComponent<IPorps> {
       .v-list__node--count
         display inline-block
         padding 8px
+        text-align right
         font-size 24px
         color #b7b7b7
         img
