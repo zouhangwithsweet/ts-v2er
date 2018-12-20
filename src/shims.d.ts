@@ -23,5 +23,6 @@ export interface Toast {
 declare module 'vue/types/vue' {
   interface Vue {
     $loading: Toast
+    $handleError: (error:any) => void
   }
 }

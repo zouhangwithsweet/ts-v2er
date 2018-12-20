@@ -13,7 +13,15 @@ export const getNodesList: any = (ops:any) => ajax.get(`/nodes/show.json?name=${
 export const getUserInfo = (ops: any) => ajax.get('/members/show.json', { params: ops })
 
 // 帖子内容
-export const getListHeader = (ops: any) => ajax.get('/topics/show.json', { params: ops })
+interface HeaderParams {
+  id: string;
+}
+export const getListHeader = (ops: HeaderParams) => ajax.get('/topics/show.json', { params: ops })
 
 // 帖子回复详情
-export const getListDetail = (ops: any) => ajax.get('/replies/show.json', { params: ops })
+interface DetailParams {
+  topic_id: string;
+  page_size?: number;
+  page?: number; 
+}
+export const getListDetail = (ops: DetailParams) => ajax.get('/replies/show.json', { params: ops })
