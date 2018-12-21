@@ -22,9 +22,13 @@ export default class ListItem extends VueComponent<IPorps> {
     return y + m + d
   }
 
+  clickHandler() {
+    this.$emit('click', this.item)
+  }
+
   render() {
     return (
-      <div class="v-list__item">
+      <div class="v-list__item" on-click={this.clickHandler}>
         <div class="v-list__detail">
           <img src={ this.item.member.avatar_large } class="v-list__img"/>
             <div class="v-list__desc">

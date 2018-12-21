@@ -5,12 +5,25 @@ import { getListHeader, getListDetail } from '@/api'
 
 @Component
 export default class Detail extends VueComponent<{}> {
+  private topicDetail: any = null
+  private replaies: any = null
+  mounted() {
+    this.fetchListDetail()
+  }
   async fetchListDetail() {
     try {
-      let resp:any = await getListDetail({
-        topic_id: this.$route.params.id,
-      }) as any
-      console.log(resp)
+      let [topicDetail, replaies] = await Promise.all([
+        getListHeader({
+          id: this.$route.params.id,
+        }),
+        getListDetail({
+          topic_id: this.$route.params.id,
+        }),
+      ])
+      console.log(topicDetail, replaies)
+      this.topicDetail = topicDetail
+      console.log(this.topicDetail)
+      this.replaies = replaies
     } catch (error) {
       this.$handleError(error)
     }
@@ -18,7 +31,9 @@ export default class Detail extends VueComponent<{}> {
 
   render() {
     return (
-      <div class="detail-page"></div>
+      <div class="detail-page">
+        {this.topicDetail && this.topicDetail[0].id}
+      </div>
     )
   }
 }

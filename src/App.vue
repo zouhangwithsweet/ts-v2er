@@ -1,15 +1,21 @@
 <template>
   <div id="app">
-    <keep-alive>
+    <keep-alive include="/Hot|Now|Nodes/">
       <router-view/>
     </keep-alive>
-    <footer-nav></footer-nav>
+    <footer-nav v-show="isShowBottomBar"></footer-nav>
   </div>
 </template>
 <script>
 import FooterNav from '@/components/Footer'
 
 export default {
+  computed: {
+    isShowBottomBar() {
+      let routes = ['Hot', 'Now', 'Nodes']
+      return routes.includes(this.$route.name)
+    },
+  },
   components: {
     FooterNav,
   },

@@ -8,7 +8,9 @@ interface IData {
   [k:string]: any
 }
 
-@Component
+@Component({
+  name: 'Hot'
+})
 export default class Hot extends Vue {
   data: Array<IData> = []
   $refs!: {list: List}
@@ -25,6 +27,16 @@ export default class Hot extends Vue {
     this.$refs.list.finishPullDown()
   }
 
+  showDetail(item:any) {
+    console.log(item)
+    this.$router.push({
+      name: 'Detail',
+      params: {
+        id: item.id,
+      },
+    })
+  }
+
   render() {
     return (
       <div class="hot">
@@ -33,7 +45,7 @@ export default class Hot extends Vue {
           on-pullDown={ this.fetchData }
           with-data={() => (
             this.data.map((item:IData) => (
-              <ListItem item={item}/>
+              <ListItem item={item} on-click={this.showDetail}/>
             ))
           )}/>
       </div>

@@ -12,8 +12,17 @@ export type ToastConstructorOptions = {
   position?: string
 } & ToastOptions
 
+interface FakerOpt {
+  content: string
+  duration?: number
+  parentNode?: Element
+  hasMask?: boolean
+  icon?: string
+  position?: string
+}
+
 export interface Toast {
-  (options?: ToastConstructorOptions): void
+  (options?: FakerOpt): void
   info(content: string, duration?: number, hasMask?: boolean, parentNode?: Element): void
   succeed(content: string, duration?: number, hasMask?: boolean, parentNode?: Element): void
   failed(content: string, duration?: number, hasMask?: boolean, parentNode?: Element): void
