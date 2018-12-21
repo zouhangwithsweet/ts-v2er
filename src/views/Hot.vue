@@ -3,7 +3,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import List from '@/components/List.vue'
 import ListItem from '@/components/ListItem.vue'
 import { getHotList } from '@/api'
-
+import { Iitem } from '../interface'
 interface IData {
   [k:string]: any
 }
@@ -12,11 +12,11 @@ interface IData {
   name: 'Hot'
 })
 export default class Hot extends Vue {
-  data: Array<IData> = []
+  data: Array<Iitem> = []
   $refs!: {list: List}
   async mounted() {
     this.$loading()
-    let resp = await getHotList()
+    let resp: Iitem[] = await getHotList()
     this.data = resp
     this.$loading.hide()
   }
@@ -27,12 +27,12 @@ export default class Hot extends Vue {
     this.$refs.list.finishPullDown()
   }
 
-  showDetail(item:any) {
+  showDetail(item:Iitem) {
     console.log(item)
     this.$router.push({
       name: 'Detail',
       params: {
-        id: item.id,
+        id: `${item.id}`,
       },
     })
   }
@@ -44,7 +44,7 @@ export default class Hot extends Vue {
           ref='list'
           on-pullDown={ this.fetchData }
           with-data={() => (
-            this.data.map((item:IData) => (
+            this.data.map((item:Iitem) => (
               <ListItem item={item} on-click={this.showDetail}/>
             ))
           )}/>
