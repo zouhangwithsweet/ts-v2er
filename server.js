@@ -12,17 +12,27 @@ const headerConf = {
 
 let apiRoutes = express.Router()
 
+// 分页controller
+function pageController(params, data) {
+    if (params.page && params.page_size) {
+        return data.slice((params.page - 1) * params.page_size, params.page * params.page_size)
+    }
+    return data
+}
+
 for (let k in proxyConf) {
-    app.get(k, function(req, res) {
+    apiRoutes.get(k, function(req, res) {
         // console.log(proxyConf[k])
         axios.get(proxyConf[k], {
             headers: headerConf,
             params: req.query,
         }).then(response => {
+            console.log(req.query)
             res.setHeader('Access-Control-Allow-Origin', '*')
-            res.json(response.data)
+            res.json(pageController(req.query, response.data))
         }).catch(e => {
-            console.log(e)
+            res.status = 500
+            res.end(e)
         })
     })
 }

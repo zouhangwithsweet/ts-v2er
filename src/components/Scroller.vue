@@ -87,7 +87,7 @@ export default class Scroll extends VueComponent<IProps, IEvents> {
     if (this.pullUpLoad) {
       Object.assign(options, {
         pullUpLoad: {
-          threshold: -20, // 在上拉到超过底部 20px 时，触发 pullingUp 事件
+          threshold: -50, // 在上拉到超过底部 20px 时，触发 pullingUp 事件
         },
       })
     }

@@ -6,12 +6,24 @@ import Scroller from './Scroller.vue'
 import TopTip from './Release.vue'
 
 interface Iprop {
-  tip?: string
-  dataList?: any[]
+  tip?: string;
+  dataList?: any[];
+  withData(): any;
+  pullup?: boolean;
+  pulldown?: boolean;
+}
+
+interface IEvents {
+  onPullDown: () => void
+  onPullUp: () => void
+  onTouchEnd: () => void
+  onScroll: (pos: Position) => void
+  onScrollToEnd: () => void
+  onBeforeScroll: () => void
 }
 
 @Component
-export default class List extends VueComponent<Iprop> {
+export default class List extends VueComponent<Iprop, IEvents> {
   $refs!: { scroller: Scroller }
   @Prop({ type: Array, default: () => [] }) dataList!: any[]
 
@@ -19,15 +31,23 @@ export default class List extends VueComponent<Iprop> {
 
   @Prop() withData?: () => VNode
 
+  @Prop({ type: Boolean, default: true }) pullup!: boolean
+
+  @Prop({ type: Boolean, default: true }) pulldown!: boolean
+
   private loading: boolean = false
+
+  private upLoading: boolean = false
 
   // pullup and finishpullup
   pullUp() {
+    this.upLoading = true
     this.$emit('pullUp')
   }
 
   finishPullUp() {
     this.$refs.scroller.scroll.finishPullUp()
+    this.upLoading = false
   }
 
   // pulldown and finishpulldown
@@ -48,10 +68,13 @@ export default class List extends VueComponent<Iprop> {
           ref="scroller"
           onPullingUp={this.pullUp}
           onPullingDown={this.pullDown}
+          pullUpLoad={this.pullup}
+          pullDownRefresh={this.pulldown}
         >
           <div class="scroller-inner">
-            <TopTip loading={this.loading}/>
+            {this.pulldown && <TopTip loading={this.loading} message='Refresh release' top={-50} height={50}/>}
             {this.withData && this.withData()}
+            {this.dataList.length > 0 && <TopTip class="relative" loading={this.upLoading} message="Loading more..."/>}
           </div>
         </Scroller>
       </div>
@@ -71,4 +94,6 @@ export default class List extends VueComponent<Iprop> {
     align-items center
     font-size $font-size-small
     color $color-text-d
+    &.relative
+      position relative
 </style>

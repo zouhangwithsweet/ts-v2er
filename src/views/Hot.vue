@@ -25,6 +25,7 @@ export default class Hot extends Vue {
     let resp = await getHotList()
     this.data = resp
     this.$refs.list.finishPullDown()
+    this.$refs.list.finishPullUp()
   }
 
   showDetail(item:Iitem) {
@@ -43,7 +44,9 @@ export default class Hot extends Vue {
         <List
           ref='list'
           on-pullDown={ this.fetchData }
-          with-data={() => (
+          on-pullUp={ this.fetchData }
+          dataList={this.data}
+          withData={() => (
             this.data.map((item:Iitem) => (
               <ListItem item={item} on-click={this.showDetail}/>
             ))

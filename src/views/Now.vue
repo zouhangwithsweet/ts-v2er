@@ -31,7 +31,7 @@ export default class Hot extends Vue {
         <List
           ref='list'
           on-pullDown={ this.fetchData }
-          with-data={() => (
+          withData={() => (
             this.data.map((item:IData) => (
               <ListItem item={item}/>
             ))

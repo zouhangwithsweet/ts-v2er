@@ -5,6 +5,8 @@ import { Component, Prop } from 'vue-property-decorator'
 interface IProps {
   loading?: boolean,
   message?: string,
+  top?: string | number,
+  height?: number,
 }
 
 @Component
@@ -15,11 +17,16 @@ export default class Toptip extends VueComponent<IProps> {
   @Prop({ type: String })
   message!: string
 
+  @Prop()
+  top?: string | number
+
+  @Prop()
+  height!: number
+
   render() {
     return (
-      <div class="top-tip" style={{ top: '-50px', height: '50px' }}>
-        {this.loading ? 'Loading...' : 'Refresh release'}
-        {this.message}
+      <div class="top-tip" style={{ top: `${this.top}px`, height: `${this.height}px` }}>
+        {this.loading ? 'Loading...' : this.message}
       </div>
     )
   }
