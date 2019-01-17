@@ -47,6 +47,7 @@ export default class List extends VueComponent<Iprop, IEvents> {
 
   finishPullUp() {
     this.$refs.scroller.scroll.finishPullUp()
+    this.$refs.scroller.scroll.refresh()
     this.upLoading = false
   }
 
@@ -58,6 +59,7 @@ export default class List extends VueComponent<Iprop, IEvents> {
 
   finishPullDown() {
     this.$refs.scroller.scroll.finishPullDown()
+    this.$refs.scroller.scroll.refresh()
     this.loading = false
   }
 
