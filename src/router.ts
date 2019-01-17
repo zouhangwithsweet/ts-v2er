@@ -25,6 +25,11 @@ export default new Router({
       name: 'Now',
     },
     {
+      path: '/nodes',
+      // component: Now,
+      name: 'Nodes',
+    },
+    {
       path: '/detail/:id',
       component: Detail,
       name: 'Detail',
