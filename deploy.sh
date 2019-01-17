@@ -11,7 +11,7 @@ git add -A
 git commit -m 'deploy'
 
 #git push
-git push
+git push -f
 
 #exit
 exit
