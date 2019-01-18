@@ -3,7 +3,7 @@
     <keep-alive include="/Hot|Now|Nodes/">
       <router-view/>
     </keep-alive>
-    <footer-nav v-show="isShowBottomBar"></footer-nav>
+    <footer-nav :home="!isShowBottomBar"></footer-nav>
   </div>
 </template>
 <script>

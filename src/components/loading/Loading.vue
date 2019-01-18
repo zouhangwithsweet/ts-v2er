@@ -35,7 +35,7 @@ export default class Loading extends VueComponent<{}> {
   render() {
     return (
       <div class={{ hide: !this.show, loading: true }}>
-        <svg style="scale: .4">
+        <svg style="scale: .2">
           <circle id="cLeft" cx="120" cy="75" r="10" fill="#FF3446"/>
           <circle id="cCenter" cx="150" cy="75" r="10" fill="#FF3446"/>
           <circle id="cRight" cx="180" cy="75" r="10" fill="#FF3446"/>

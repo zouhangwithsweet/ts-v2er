@@ -3,15 +3,16 @@ import { Component } from 'vue-property-decorator'
 import { Component as VueComponent } from 'vue-tsx-support'
 import { getListHeader, getListDetail } from '@/api'
 import List from '@/components/List.vue'
+import ReplayItem from '@/components/ReplayItem.vue'
 import { Member } from '@/interface'
 
-interface repliyItem {
+export interface repliyItem {
   content?: string,
-  'content_rendered'?: string,
+  'content_rendered': string,
   created: number,
-  'last_modified'?: number,
-  'member_id'?: number,
-  'topic_id'?: number,
+  'last_modified': number,
+  'member_id': number,
+  'topic_id': number,
   member: Member,
 }
 
@@ -33,6 +34,10 @@ export default class Detail extends VueComponent<{}> {
       }) as repliyItem[]
       this.replaies = [...this.replaies, ...replaies]
       this.$refs.list.finishPullUp()
+      // todo
+      this.$nextTick(() => {
+        this.$refs.list.finishPullUp()
+      })
     } catch (error) {
       console.log(error)
     }
@@ -41,13 +46,9 @@ export default class Detail extends VueComponent<{}> {
   render() {
     return (
       <div class="detail-page">
-        <List ref="list" onPullUp={this.fetchListDetail} pulldown={false} withData={
+        <List dataList={this.replaies} ref="list" onPullUp={this.fetchListDetail} pulldown={false} withData={
           () => {
-            return this.replaies.map((replay: repliyItem) => {
-              return (
-                <div class="content">{replay.content}</div>
-              )
-            })
+            return this.replaies.map((replay: repliyItem) => <ReplayItem item={replay}/>)
           }
         }/>
       </div>
