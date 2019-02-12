@@ -88,7 +88,7 @@ export default class ReplayItem extends VueComponent<IProps, IEvent> {
     .user-name, .replay-time
       margin-bottom 8px
     .item-detail
-      line-height 30px
+      line-height 32px
       color #101010
       >>> img
         max-width 50%

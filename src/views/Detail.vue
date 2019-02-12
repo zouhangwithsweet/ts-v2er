@@ -4,7 +4,8 @@ import { Component as VueComponent } from 'vue-tsx-support'
 import { getListHeader, getListDetail } from '@/api'
 import List from '@/components/List.vue'
 import ReplayItem from '@/components/ReplayItem.vue'
-import { Member } from '@/interface'
+import { Member, Iitem } from '@/interface'
+import { Getter } from 'vuex-class'
 
 export interface repliyItem {
   content?: string,
@@ -22,16 +23,19 @@ export default class Detail extends VueComponent<{}> {
   private topicDetail: any = null
   private replaies: repliyItem[] = []
   private pageIndex: number = 1
+  @Getter currentPost!: Iitem
   mounted() {
     this.fetchListDetail()
   }
   async fetchListDetail() {
     try {
+      this.$loading()
       let replaies = await getListDetail({
         topic_id: this.$route.params.id,
         page: this.pageIndex++,
         page_size: 20,
       }) as repliyItem[]
+      this.$loading.hide()
       this.replaies = [...this.replaies, ...replaies]
       this.$refs.list.finishPullUp()
       // todo
@@ -39,6 +43,7 @@ export default class Detail extends VueComponent<{}> {
         this.$refs.list.finishPullUp()
       })
     } catch (error) {
+      this.$loading.hide()
       console.log(error)
     }
   }
@@ -48,7 +53,17 @@ export default class Detail extends VueComponent<{}> {
       <div class="detail-page">
         <List dataList={this.replaies} ref="list" onPullUp={this.fetchListDetail} pulldown={false} withData={
           () => {
-            return this.replaies.map((replay: repliyItem) => <ReplayItem item={replay}/>)
+            return (
+              <div>
+                <div class="detail-title">
+                  <div class="title-content">{this.currentPost.title}</div>
+                  <img src={this.currentPost.member.avatar_large}/>
+                  <div class="user-name">{this.currentPost.member.username}</div>
+                  <div class="content" domPropsInnerHTML={this.currentPost.content_rendered}></div>
+                </div>
+                {this.replaies.map((replay: repliyItem) => <ReplayItem item={replay}/>)}
+              </div>
+            )
           }
         }/>
       </div>
@@ -58,6 +73,16 @@ export default class Detail extends VueComponent<{}> {
 </script>
 
 <style lang="stylus" scoped>
+.title-content
+  font-size 40px
+  color #101010
+.user-name
+  font-size 24px
+  color #666
 .content
   font-size 28px
+  p
+    margin 0
+.detail-title
+  background-color #ffffff
 </style>

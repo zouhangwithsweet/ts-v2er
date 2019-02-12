@@ -4,9 +4,7 @@ import List from '@/components/List.vue'
 import ListItem from '@/components/ListItem.vue'
 import { getHotList } from '@/api'
 import { Iitem } from '../interface'
-interface IData {
-  [k:string]: any
-}
+import { Action } from 'vuex-class'
 
 @Component({
   name: 'Hot'
@@ -14,6 +12,7 @@ interface IData {
 export default class Hot extends Vue {
   data: Array<Iitem> = []
   $refs!: {list: List}
+  @Action('upDateCurrentPost') upDateCurrentPost!: (item: Iitem) => void
   async mounted() {
     this.$loading()
     let resp: Iitem[] = await getHotList()
@@ -29,7 +28,7 @@ export default class Hot extends Vue {
   }
 
   showDetail(item:Iitem) {
-    console.log(item)
+    this.upDateCurrentPost(item)
     this.$router.push({
       name: 'Detail',
       params: {
