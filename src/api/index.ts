@@ -6,8 +6,11 @@ export const getHotList: any = () => ajax.get('/topics/hot.json', {})
 // 最新主题
 export const getNowList: any = () => ajax.get('/topics/latest.json', {})
 
+// 所有节点
+export const getAllNodes: any = () => ajax.get('/nodes/all.json', {})
+
 // 节点信息
-export const getNodesList: any = (ops:any) => ajax.get(`/nodes/show.json?name=${ops}`, {})
+export const getNodeInfo: any = (ops:any) => ajax.get(`/nodes/show.json?name=${ops}`, {})
 
 // 用户主页
 export const getUserInfo = (ops: any) => ajax.get('/members/show.json', { params: ops })

@@ -59,6 +59,7 @@ export default class ListItem extends VueComponent<IPorps> {
 <style lang="stylus">
   .v-list__item
     height 240px
+    margin 0 8px
     margin-bottom 16px
     padding 0 20px
     border-radius 12px

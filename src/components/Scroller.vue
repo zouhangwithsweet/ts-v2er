@@ -176,5 +176,5 @@ export default class Scroll extends VueComponent<IProps, IEvents> {
     bottom 0
     left 0
     right 0
-    padding 0 8px
+    padding 0
 </style>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hot from './views/Hot.vue'
 import Now from './views/Now.vue'
+import Nodes from './views/Nodes.vue'
 import Detail from './views/Detail.vue'
 
 Vue.use(Router)
@@ -26,7 +27,7 @@ export default new Router({
     },
     {
       path: '/nodes',
-      // component: Now,
+      component: Nodes,
       name: 'Nodes',
     },
     {
