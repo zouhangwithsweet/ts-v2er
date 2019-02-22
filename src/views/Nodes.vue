@@ -22,7 +22,7 @@ export default class Nodes extends VueComponent<{}> {
         {this.nodeList.map((item:Node) => {
           return (
             <div class="node-item">
-              <img src={item.avatar_large} class="avatar"/>
+              <img src={item.avatar_large.includes('//cdn') ? item.avatar_large : require('@/assets/logo.png')} class="avatar"/>
               <div class="name">
                 {item.name}
               </div>
@@ -68,5 +68,7 @@ export default class Nodes extends VueComponent<{}> {
       .name
         width 80px
         overflow hidden
+        text-overflow ellipsis
+        white-space nowrap
         font-size 24px
 </style>
