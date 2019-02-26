@@ -12,7 +12,7 @@ import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
   components: {
     HelloWorld,
   },
-  i18n: {}
+  // i18n: {}
 })
 export default class Home extends Vue {}
 </script>

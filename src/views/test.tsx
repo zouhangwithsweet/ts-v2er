@@ -1,7 +1,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({
-  i18n: {}
+  // i18n: {}
 })
 export default class About extends Vue {
   @Prop() person!: object

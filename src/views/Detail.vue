@@ -57,11 +57,15 @@ export default class Detail extends VueComponent<{}> {
               <div>
                 <div class="detail-title">
                   <div class="title-content">{this.currentPost.title}</div>
-                  <img src={this.currentPost.member.avatar_large}/>
-                  <div class="user-name">{this.currentPost.member.username}</div>
+                  <div class="user-name">
+                    <img class="avatar" src={this.currentPost.member.avatar_large}/>
+                    {this.currentPost.member.username}
+                  </div>
                   <div class="content" domPropsInnerHTML={this.currentPost.content_rendered}></div>
                 </div>
-                {this.replaies.map((replay: repliyItem) => <ReplayItem item={replay}/>)}
+                {this.replaies.map((replay: repliyItem) => <ReplayItem
+                  item={replay}
+                  class={{ 'owner': this.currentPost.member.username === replay.member.username }}/>)}
               </div>
             )
           }
@@ -77,15 +81,28 @@ export default class Detail extends VueComponent<{}> {
   font-size 40px
   color #101010
 .user-name
+  padding 16px
+  display flex
+  align-items flex-end
   font-size 24px
   color #666
+  .avatar
+    margin-right 16px
 .content
   font-size 28px
   p
     margin 0
 .detail-title
+  padding 16px
+  margin-bottom 8px
   background-color #ffffff
+  .avatar
+    border-radius 50%
   .content
-    img
-      80%
+    >>> img
+      width 80%
+      display block
+      margin 0 auto
+.owner
+  background-color rgba(92, 196, 20, 0.7)
 </style>
