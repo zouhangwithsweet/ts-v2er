@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hot from './views/Hot.vue'
-import Now from './views/Now.vue'
-import Nodes from './views/Nodes.vue'
-import Detail from './views/Detail.vue'
+const Hot = () => import('./views/Hot.vue')
+const Now = () => import('./views/Now.vue')
+const Nodes = () => import('./views/Nodes.vue')
+const Detail = () => import('./views/Detail.vue')
 
 Vue.use(Router)
 

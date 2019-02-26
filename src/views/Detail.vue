@@ -85,4 +85,7 @@ export default class Detail extends VueComponent<{}> {
     margin 0
 .detail-title
   background-color #ffffff
+  .content
+    img
+      80%
 </style>
