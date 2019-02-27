@@ -20,6 +20,7 @@ module.exports = {
     config.module.rule('ts').use('cache-loader')
     config.plugin('fork-ts-checker')
   },
+  productionSourceMap: false,
   transpileDependencies: [
     /\bvue-awesome\b/,
   ],
