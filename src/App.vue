@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive include="/Hot|Now|Nodes/">
+    <keep-alive :include="['Hot', 'Now', 'Nodes']">
       <router-view/>
     </keep-alive>
     <footer-nav :home="!isShowBottomBar"></footer-nav>

@@ -63,7 +63,7 @@ export default class ReplayItem extends VueComponent<IProps, IEvent> {
   background-color #ffffff
   font-size 28px
   display flex
-  align-items start
+  align-items flex-start
   padding 20px
   padding-right 8px
   .user-avatar

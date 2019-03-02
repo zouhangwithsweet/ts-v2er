@@ -4,12 +4,25 @@ import { Component as VueComponent } from 'vue-tsx-support'
 import { getAllNodes } from '@/api'
 import { Node } from '@/interface'
 
-@Component
+@Component({
+  name: 'Nodes'
+})
 export default class Nodes extends VueComponent<{}> {
   private nodeList: Node[] = []
+
   async mounted() {
     const resp = await getAllNodes() as Node[]
     this.nodeList = resp
+  }
+
+  // gonodeinfo
+  goNode(node: Node) {
+    this.$router.push({
+      name: 'Node',
+      params: {
+        node: node.name,
+      },
+    })
   }
 
   render() {
@@ -18,18 +31,21 @@ export default class Nodes extends VueComponent<{}> {
         <div class="title">
           Nodes
         </div>
+        <router-view></router-view>
         <div class="node-list">
         {this.nodeList.map((item:Node) => {
-          return (
-            <div class="node-item">
-              {item.avatar_large.includes('//cdn') && <img
-                src={item.avatar_large.includes('//cdn') ? item.avatar_large : require('@/assets/logo.png')}
-                class="avatar"/>}
-              <div class="name">
-                {item.name}
+          if (item.avatar_large.includes('//cdn')) {
+            return (
+              <div class="node-item" on-click={() => this.goNode(item)}>
+                <img
+                  src={item.avatar_large.includes('//cdn') ? item.avatar_large : require('@/assets/logo.png')}
+                  class="avatar"/>
+                <div class="name">
+                  {item.name}
+                </div>
               </div>
-            </div>
-          )
+            )
+          }
         })}
         </div>
       </div>
@@ -54,7 +70,7 @@ export default class Nodes extends VueComponent<{}> {
     padding 0 16px
     .node-item
       display flex
-      justify-content start
+      justify-content flex-start
       align-items center
       width 200px
       height 100px

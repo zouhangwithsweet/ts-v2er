@@ -4,6 +4,7 @@ const Hot = () => import('./views/Hot.vue')
 const Now = () => import('./views/Now.vue')
 const Nodes = () => import('./views/Nodes.vue')
 const Detail = () => import('./views/Detail.vue')
+const Node = () => import('./views/Node.vue')
 
 Vue.use(Router)
 
@@ -29,6 +30,13 @@ export default new Router({
       path: '/nodes',
       component: Nodes,
       name: 'Nodes',
+      children: [
+        {
+          path: ':node',
+          name: 'Node',
+          component: Node,
+        },
+      ],
     },
     {
       path: '/detail/:id',

@@ -10,7 +10,9 @@ interface IData {
   [k:string]: any
 }
 
-@Component
+@Component({
+  name: 'Now'
+})
 export default class Hot extends Vue {
   data: Array<IData> = []
   $refs!: {list: List}
