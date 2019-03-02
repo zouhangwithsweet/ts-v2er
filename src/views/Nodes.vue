@@ -22,7 +22,9 @@ export default class Nodes extends VueComponent<{}> {
         {this.nodeList.map((item:Node) => {
           return (
             <div class="node-item">
-              <img src={item.avatar_large.includes('//cdn') ? item.avatar_large : require('@/assets/logo.png')} class="avatar"/>
+              {item.avatar_large.includes('//cdn') && <img
+                src={item.avatar_large.includes('//cdn') ? item.avatar_large : require('@/assets/logo.png')}
+                class="avatar"/>}
               <div class="name">
                 {item.name}
               </div>
