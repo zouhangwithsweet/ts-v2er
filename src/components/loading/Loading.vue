@@ -56,7 +56,7 @@ export default class Loading extends VueComponent<{}> {
     display flex
     justify-content center
     align-items center
-    transform scale(.2)
+    transform scale(.4)
   .hide
     display none
 </style>
