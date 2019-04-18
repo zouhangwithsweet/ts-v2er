@@ -25,6 +25,10 @@ export default class Hot extends Vue {
     this.data = resp
   }
 
+  activated() {
+    this.$refs.list.$refs.scroller.refresh()
+  }
+
   async fetchData() {
     let resp = await getNowList()
     this.data = resp
