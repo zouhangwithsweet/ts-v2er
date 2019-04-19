@@ -15,7 +15,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'deploy'
-                sh 'rsync -avz -e ./dist/* root@172.17.235.252:/data/www/production/ts-v2er/'
+                sh 'scp ./dist/* root@172.17.235.252:/data/www/production/ts-v2er/'
             }
         }
     }
