@@ -1,36 +1,23 @@
 language: node_js
-# nodejs版本
-node_js: 
-    - '10'
-
-# Travis-CI Caching
+node_js:
+- '10'
 cache:
   directories:
-    - node_modules
-
+  - node_modules
 before_install:
-  - openssl aes-256-cbc -K $encrypted_71c4271895df_key -iv $encrypted_71c4271895df_iv -in id_rsa.enc -out ~\/.ssh/id_rsa -d
-  - chmod 600 ~/.ssh/id_rsa
-  - echo -e "Host 39.106.201.195\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-# S: Build Lifecycle
+- openssl aes-256-cbc -K $encrypted_71c4271895df_key -iv $encrypted_71c4271895df_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host 39.106.201.195\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 install:
-  - npm install
-
-before_script:
-
-# 无其他依赖项所以执行npm run build 构建就行了
+- npm install
+before_script: 
 script:
-  - npm run build
-
+- npm run build
 after_script:
-  - scp -o stricthostkeychecking=no -r ./dist/* root@39.106.201.195:/data/www
-# E: Build LifeCycle
-
-#指定分支，只有指定的分支提交时才会运行脚本
+- scp -o stricthostkeychecking=no -r ./dist/* root@39.106.201.195:/data/www
 branches:
   only:
-    - master
+  - master
 env:
- global:
-   # 我将其添加到了travis-ci的环境变量中
-   #- GH_REF: github.com/yimogit/metools.git 
+  global: 
