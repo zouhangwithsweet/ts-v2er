@@ -8,7 +8,10 @@ cache:
   directories:
     - node_modules
 
-
+before_install:
+  - openssl aes-256-cbc -K $encrypted_71c4271895df_key -iv $encrypted_71c4271895df_iv -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+  - - echo -e "Host 39.106.201.195\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 # S: Build Lifecycle
 install:
   - npm install
@@ -20,13 +23,7 @@ script:
   - npm run build
 
 after_script:
-  - cd ./dist
-  - git init
-  - git config user.name "${U_NAME}"
-  - git config user.email "${U_EMAIL}"
-  - git add .
-  - git commit -m "Update tools"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:${P_BRANCH}
+  - scp -o stricthostkeychecking=no -r ./dist/* root@39.106.201.195:/data/www
 # E: Build LifeCycle
 
 #指定分支，只有指定的分支提交时才会运行脚本
