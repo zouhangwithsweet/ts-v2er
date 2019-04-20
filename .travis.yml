@@ -4,11 +4,11 @@ node_js:
 cache:
   directories:
   - node_modules
-before_install:
-- openssl aes-256-cbc -K $encrypted_71c4271895df_key -iv $encrypted_71c4271895df_iv
-  -in id_rsa.enc -out ~/.ssh/id_rsa -d
-- chmod 600 ~/.ssh/id_rsa
-- echo -e "Host 39.106.201.195\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+# before_install:
+# - openssl aes-256-cbc -K $encrypted_71c4271895df_key -iv $encrypted_71c4271895df_iv
+#   -in id_rsa.enc -out ~/.ssh/id_rsa -d
+# - chmod 600 ~/.ssh/id_rsa
+# - echo -e "Host 39.106.201.195\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 install:
 - npm install
 before_script: 
