@@ -1,5 +1,5 @@
 # ts-v2er
-
+[![Build Status](https://travis-ci.org/zouhangwithsweet/ts-v2er.svg?branch=master)](https://travis-ci.org/zouhangwithsweet/ts-v2er)
 ## Project setup
 ```
 npm install
