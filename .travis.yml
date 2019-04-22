@@ -4,18 +4,17 @@ node_js:
 cache:
   directories:
   - node_modules
+before_install:
+  - openssl aes-256-cbc -K $encrypted_71c4271895df_key -iv $encrypted_71c4271895df_iv
+    -in travis_rsa.enc -out ~/.ssh/travis_rsa -d
+  - chmod 600 ~/.ssh/travis_rsa
+  - echo -e "Host 39.106.201.195\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 install:
-- npm install
-before_script: 
+  - npm install
 script:
-- npm run build
-after_script:
-- rsync -avz -e ./dist/* root@39.106.201.195:/data/www
+  - npm run build
+after_success:
+  - rsync -avz -e ./dist/* root@39.106.201.195:/data/www
 branches:
   only:
   - master
-before_install:
-- openssl aes-256-cbc -K $encrypted_71c4271895df_key -iv $encrypted_71c4271895df_iv
-  -in travis_rsa.enc -out ~/.ssh/travis_rsa -d
-- chmod 600 ~/.ssh/travis_rsa
-- echo -e "Host 39.106.201.195\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
