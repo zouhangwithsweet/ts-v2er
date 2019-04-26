@@ -5,6 +5,7 @@ import { repliyItem } from '@/views/Detail.vue'
 
 interface IProps {
   item: repliyItem;
+  index: number;
 }
 
 interface IEvent {
@@ -15,6 +16,7 @@ interface IEvent {
 export default class ReplayItem extends VueComponent<IProps, IEvent> {
   $refs!: { detail: HTMLElement }
   @Prop() item!: repliyItem
+  @Prop() index!: number
 
   mounted() {
     this.$refs.detail.innerHTML = this.item.content_rendered
@@ -52,6 +54,7 @@ export default class ReplayItem extends VueComponent<IProps, IEvent> {
           <div class="item-detail" ref="detail">
           </div>
         </div>
+        <div class="floor">#{this.index+1}</div>
       </div>
     )
   }
@@ -66,6 +69,7 @@ export default class ReplayItem extends VueComponent<IProps, IEvent> {
   align-items flex-start
   padding 20px
   padding-right 8px
+  position relative
   .user-avatar
     width 60px
     height 60px
@@ -92,4 +96,16 @@ export default class ReplayItem extends VueComponent<IProps, IEvent> {
       color #101010
       >>> img
         max-width 50%
+  .floor
+    position absolute
+    width 48px
+    height 24px
+    // border 1px solid #666
+    border-radius 12px
+    top 20px
+    right 12px
+    text-align center
+    font-size 12px
+    line-height 24px
+    background-color #eee
 </style>

@@ -63,8 +63,9 @@ export default class Detail extends VueComponent<{}> {
                   </div>
                   <div class="content" domPropsInnerHTML={this.currentPost.content_rendered}></div>
                 </div>
-                {this.replaies.map((replay: repliyItem) => <ReplayItem
+                {this.replaies.map((replay: repliyItem, index) => <ReplayItem
                   item={replay}
+                  index={index}
                   class={{ 'owner': this.currentPost.member.username === replay.member.username }}/>)}
               </div>
             )
