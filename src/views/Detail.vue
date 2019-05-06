@@ -105,5 +105,5 @@ export default class Detail extends VueComponent<{}> {
       display block
       margin 0 auto
 .owner
-  background-color rgba(92, 196, 20, 0.7)
+  background-color rgba(253, 255, 225, 0.7)
 </style>
