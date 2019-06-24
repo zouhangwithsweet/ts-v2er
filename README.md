@@ -24,3 +24,9 @@ npm run build
 ```
 npm run lint
 ```
+### **注意** 开发时需要启动 server
+```
+node server
+```
+
+## 扫码体验
