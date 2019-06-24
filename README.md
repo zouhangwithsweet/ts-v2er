@@ -30,7 +30,7 @@ node server
 ```
 
 ## 扫码体验
-<img src="./images/1561342492.png"/>
+<img src="./images/1561342492.png" style="transform: scale(.7)"/>
 
 ### 项目特点
 - [x] 使用 @vue/cli + typescript + [vue-tsx-support](https://github.com/wonderful-panda/vue-tsx-support) 构建，基本上实现了组件的类型推断与约束
