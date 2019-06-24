@@ -30,3 +30,12 @@ node server
 ```
 
 ## 扫码体验
+<img src="./images/1561342492.png"/>
+
+### 项目特点
+- [x] 使用 @vue/cli + typescript + [vue-tsx-support](https://github.com/wonderful-panda/vue-tsx-support) 构建，基本上实现了组件的类型推断与约束
+- [x] rem + vw 布局
+- [x] express 实现跨域、自定义接口
+- [x] 切割数组分页
+- [x] 上拉加载，下拉刷新
+- [x] travis 持续部署
